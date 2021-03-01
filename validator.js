@@ -32,9 +32,9 @@ const linkValidation = (data) => {
 const folderValidation = (data) => {
   const schema = Joi.object({
     name: Joi.string().max(255).required(),
-    url: Joi.string().max(128).uri(),
-    description: Joi.string().max(255),
-    parent: Joi.string(),
+    url: Joi.string().max(128).uri().required().allow(''),
+    description: Joi.string().max(255).allow(''),
+    parent: Joi.string().allow(''),
     tags: Joi.array().items(Joi.string()),
     author: Joi.string().required()
   })

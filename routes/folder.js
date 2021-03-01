@@ -1,20 +1,29 @@
 const router = require("express").Router();
 const verify = require('./verifyToken');
 const {folderValidation} = require("../validator");
-const Resource = require("../models/Folder");
+const Folder = require("../models/Folder");
 
 router.get('/', verify, async (req, res) => {
   try {
-    const folders = await Folders.find({ author : req.user._id });
+    const folders = await Folder.find({ author : req.user._id });
     res.json(folders);
-  } catch (error) {
+  } catch (err) {
+    res.status(400).send({message: err})
+  }    
+})
+
+router.get('/:folderId', verify, async (req, res) => {
+  try {
+    const folders = await Folder.find({ author : req.user._id, parent: req.params.folderId });
+    res.json(folders);
+  } catch (err) {
     res.status(400).send({message: err})
   }    
 })
 
 router.post('/', verify, async (req, res) => {
   let name = (req.body.name) ? req.body.name : ""
-  let url = (req.body.name) ? req.body.name : ""
+  let url = (req.body.url) ? req.body.url : ""
   let description = (req.body.description) ? req.body.description : ""
   let parent = (req.body.parent) ? req.body.parent : ""
   let tags = (req.body.tags) ? req.body.tags : []
@@ -43,7 +52,7 @@ router.get('/:folderId', verify, async (req, res) => {
   try {
     const resource = await Resource.findById(req.params.folderId);
     res.json(resource);
-  } catch (error) {
+  } catch (err) {
     res.status(400).send({message: err})
   }
 })
