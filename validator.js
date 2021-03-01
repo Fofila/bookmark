@@ -41,7 +41,17 @@ const folderValidation = (data) => {
   return schema.validate(data);
 }
 
+const shareValidation = (data) => {
+  const schema = Joi.object({
+    resource: Joi.string().required(),
+    role: Joi.string().required(),
+    user: Joi.string().required()
+  })
+  return schema.validate(data);
+}
+
 module.exports.registerValidation = registerValidation
 module.exports.loginValidation = loginValidation
 module.exports.linkValidation = linkValidation
 module.exports.folderValidation = folderValidation
+module.exports.shareValidation = shareValidation

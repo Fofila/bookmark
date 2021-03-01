@@ -18,16 +18,14 @@ router.post('/', verify, async (req, res) => {
   let description = (req.body.description) ? req.body.description : ""
   let parent = (req.body.parent) ? req.body.parent : ""
   let tags = (req.body.tags) ? req.body.tags : []
-  let author = (req.user._i) ? req.user._id : ""
   const body = {
     name: name,
     url: url,
     description: description,
     parent: parent,
     tags: tags,
-    author: author
+    author: req.user._id
   }
-  console.log(body)
   // Validate data
   const {error} = folderValidation(body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -52,12 +50,12 @@ router.get('/:folderId', verify, async (req, res) => {
 
 router.patch('/:folderId', verify, async(req, res) => {
   try{
-    let name = (req.body.name) ? req.body.name : ""
-    let url = (req.body.name) ? req.body.name : ""
-    let description = (req.body.description) ? req.body.description : ""
-    let parent = (req.body.parent) ? req.body.parent : ""
-    let tags = (req.body.tags) ? req.body.tags : []
-    let author = (req.user._i) ? req.user._id : ""
+    let name = (req.body.name) ? req.body.name : resource.name
+    let url = (req.body.url) ? req.body.url : resource.url
+    let description = (req.body.description) ? req.body.description : resource.description
+    let parent = (req.body.parent) ? req.body.parent : resource.parent
+    let tags = (req.body.tags) ? req.body.tags : resource.parent
+    let shared = (req.body.shared) ? req.body.shared : resource.shared
     const updateLink = await Resource.updateOne({_id : req.params.folderId}, {
       $set : {
         name: name,
@@ -65,7 +63,7 @@ router.patch('/:folderId', verify, async(req, res) => {
         description: description,
         parent: parent,
         tags: tags,
-        author: author
+        shared: shared
       }
     });
     res.json(updateLink);

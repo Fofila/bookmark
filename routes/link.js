@@ -2,6 +2,7 @@ const router = require("express").Router();
 const verify = require('./verifyToken');
 const {linkValidation} = require("../validator");
 const Resource = require("../models/Resource");
+const User = require("../models/User");
 
 router.get('/', verify, async (req, res) => {
   try {
@@ -53,12 +54,14 @@ router.patch('/:postId', verify, async(req, res) => {
     let link = (req.body.link) ? req.body.link : resource.link
     let description = (req.body.description) ? req.body.description : resource.description
     let tags = (req.body.tags) ? req.body.tags : resource.tags
+    let shared = (req.body.shared) ? req.body.shared : resource.shared
     const updateLink = await Resource.updateOne({_id : req.params.postId}, {
       $set : {
         name: name,
         link: link,
         description: description,
-        tags: tags
+        tags: tags,
+        shared: shared
       }
     });
     res.json(updateLink);
