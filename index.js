@@ -18,12 +18,13 @@ mongoose.connect(
 
 // Import routes
 const authRoute = require("./routes/auth");
-
+const linkRoute = require("./routes/link");
 
 // create middlewares
 app.use(express.json());
 
 // create route middlewares
 app.use('/api/user', authRoute);
+app.use('/api/link', linkRoute);
 
 app.listen(process.env.PORT, () => {console.log(`Server running on port ${process.env.PORT}`)})

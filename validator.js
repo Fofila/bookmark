@@ -18,5 +18,17 @@ const loginValidation = (data) => {
   return schema.validate(data);
 }
 
+const linkValidation = (data) => {
+  const schema = Joi.object({
+    name: Joi.string().min(6).max(255).required(),
+    link: Joi.string().uri().required(),
+    description: Joi.string().max(255),
+    tags: Joi.array().items(Joi.string()),
+    author: Joi.string().required()
+  })
+  return schema.validate(data);
+}
+
 module.exports.registerValidation = registerValidation
 module.exports.loginValidation = loginValidation
+module.exports.linkValidation = linkValidation

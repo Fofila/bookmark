@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const UserSchema = new mongoose.Schema({
+const LinkSchema = new mongoose.Schema({
   name:{
     type: String,
     required: true,
@@ -24,10 +24,10 @@ const UserSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
-  room: {
+  author: {
     type: String,
     required: true
   }
 });
 
-module.exports = mongoose.model("Link", UserSchema);
+module.exports = mongoose.model("Link", LinkSchema);
