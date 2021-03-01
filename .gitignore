@@ -1,2 +1,4 @@
 node_modules/
+bookmark.code-workspace
 .env
+.gitignore
