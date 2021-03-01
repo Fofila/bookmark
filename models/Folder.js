@@ -21,7 +21,13 @@ const FolderSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   },
-  
+  tags: {
+    type: Array
+  },
+  author: {
+    type: String,
+    required: true
+  }
 });
 
 module.exports = mongoose.model("Folder", FolderSchema);
