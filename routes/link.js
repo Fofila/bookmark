@@ -22,14 +22,12 @@ router.post('/', verify, async (req, res) => {
     tags: req.body.tags,
     author: req.user._id
   }
-  console.log(body)
   // Validate data
   const {error} = linkValidation(body);
   if (error) return res.status(400).send(error.details[0].message);
   // create link
   const link = new Resource(body);
   // create link
-  console.log("The error is not here")
   try {
     const savedResource = await link.save();
     res.json(savedResource);
