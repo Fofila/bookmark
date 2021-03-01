@@ -3,7 +3,6 @@ const verify = require('./verifyToken');
 const {linkValidation} = require("../validator");
 const Resource = require("../models/Resource");
 
-// TODO create function that get every link visible by the user
 router.get('/', verify, async (req, res) => {
   try {
     const resources = await Resource.find({ author : req.user._id });
@@ -14,7 +13,6 @@ router.get('/', verify, async (req, res) => {
 })
 
 router.post('/', verify, async (req, res) => {
-  // TODO remove undefined fields
   let name = (req.body.name) ? req.body.name : "";
   let link = (req.body.link) ? req.body.link : "";
   let description = (req.body.description) ? req.body.description : "";
