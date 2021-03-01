@@ -24,4 +24,4 @@ const FolderSchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model("Room", RoomSchema);
+module.exports = mongoose.model("Folder", FolderSchema);
