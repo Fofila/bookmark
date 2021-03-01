@@ -24,6 +24,12 @@ const LinkSchema = new mongoose.Schema({
     type: Array,
     required: true
   },
+  folder: {
+    type: String
+  },
+  public : {
+    type: Boolean,
+  },
   author: {
     type: String,
     required: true
