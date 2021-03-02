@@ -7,7 +7,7 @@ const registerValidation = data => {
     email: Joi.string().required().email(),
     password: Joi.string().min(6).required()
   })
-  return schema.validate(data);
+  return schema.validate(data, {allowUnknown:true});
 }
 
 const loginValidation = (data) => {
@@ -15,7 +15,7 @@ const loginValidation = (data) => {
     email: Joi.string().required().email(),
     password: Joi.string().min(6).required()
   })
-  return schema.validate(data);
+  return schema.validate(data, {allowUnknown:true});
 }
 
 const linkValidation = (data) => {
@@ -26,7 +26,7 @@ const linkValidation = (data) => {
     tags: Joi.array().items(Joi.string()),
     author: Joi.string().required()
   })
-  return schema.validate(data);
+  return schema.validate(data, {allowUnknown:true});
 }
 
 const folderValidation = (data) => {
@@ -38,7 +38,7 @@ const folderValidation = (data) => {
     tags: Joi.array().items(Joi.string()),
     author: Joi.string().required()
   })
-  return schema.validate(data);
+  return schema.validate(data, {allowUnknown:true});
 }
 
 const shareValidation = (data) => {
@@ -47,7 +47,7 @@ const shareValidation = (data) => {
     role: Joi.string().required(),
     user: Joi.string().required()
   })
-  return schema.validate(data);
+  return schema.validate(data, {allowUnknown:true});
 }
 
 module.exports.registerValidation = registerValidation
