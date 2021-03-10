@@ -1,5 +1,9 @@
 const mongoose = require("mongoose");
 
+// TODO: add image
+// TODO: add position {}
+// TODO: add files (images? videos? more files?)
+// TODO: add geocoord?
 const LinkSchema = new mongoose.Schema({
   name:{
     type: String,
@@ -9,7 +13,6 @@ const LinkSchema = new mongoose.Schema({
   },
   link:{
     type: String,
-    required: true,
     max: 2048
   },
   description: {
@@ -30,12 +33,25 @@ const LinkSchema = new mongoose.Schema({
   public : {
     type: Boolean,
   },
+  private : {
+    type: Boolean,
+  },
+  size : {
+    type: String,
+  },
   author: {
     type: String,
     required: true
   },
   shared: {
     type: Object
+  },
+  color: {
+    type: String
+  },
+  image: {
+    data: Buffer,
+    contentType: String
   }
 });
 
