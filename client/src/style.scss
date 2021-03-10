@@ -1,0 +1,39 @@
+@import "../node_modules/material-design-lite/src/material-design-lite";
+$performance_font: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+// Use color primarily for emphasis. Choose colors that fit with
+// your brand and provide good contrast between visual components.
+$color-primary: $palette-blue-500;
+$color-primary-dark: $palette-blue-700;
+$color-accent: $palette-red-A200;
+
+// Our primary is dark, so use $color-dark-contrast for overlaid text.
+$color-primary-contrast: $color-dark-contrast;
+// Our accent is dark, so use $color-dark-contrast for overlaid text.
+$color-accent-contrast: $color-dark-contrast;
+
+
+.separator{
+  height: 32px;
+}
+
+// TODO: change mini
+.mini{
+  @extend .mdl-cell--4-col-tablet;
+  @extend .mdl-cell--1-col-desktop;
+}
+.small{
+  @extend .mdl-cell--4-col-tablet;
+  @extend .mdl-cell--2-col-desktop;
+}
+.big{
+  @extend .mdl-cell--4-col-tablet;
+  @extend .mdl-cell--4-col-desktop;
+}
+.huge{
+  @extend .mdl-cell--4-col-tablet;
+  @extend .mdl-cell--6-col-desktop;
+}
+.medium{
+  @extend .mdl-cell--4-col-tablet;
+  @extend .mdl-cell--3-col-desktop;
+}
